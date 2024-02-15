@@ -12,4 +12,5 @@ class WorkflowEval(models.Model):
                                                   'Milestone', default='new')
     workflow_id = fields.Many2one('project.workflow', string="Workflow",required=True)
     workflow_id_ext = fields.Many2one('workflow.in', string="Select Workflow",required=True)
+    print('something')
 
