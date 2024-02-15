@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="project_task_form_ext" model="ir.ui.view">
+            <field name="name">project_task_ext</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                  <field name="project_task_id" domain="[('project_id','=',project_id),('project_task_milestone_ext','!=','done')]"/>
+                </xpath>
+                <xpath expr="//field[@name='milestone_id']" position="after">
+                  <field name="workflow_id_ext"/>
+                </xpath>
+
+            </field>
+        </record>
+</odoo>

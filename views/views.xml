@@ -1,0 +1,64 @@
+<odoo>
+
+
+    <!-- explicit list view definition -->
+
+
+    <record model="ir.ui.view" id="workflow_evaluation.list">
+        <field name="name">workflow evaluation list</field>
+        <field name="model">project.workflow</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="workflow_evaluation.form">
+        <field name="name">workflow evaluation form</field>
+        <field name="model">project.workflow</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="Workflow_name"/>
+                        <field name="description"/>
+                    </group>
+                    <group string="ONGOING">
+                        <field name="task_temp_ongoing" domain="[('stage_id.name','!=','Done')]"/>
+                    </group>
+                    <group string="NEXT">
+                        <field name="task_temp_next" domain="[('stage_id.name','!=','Done')]"/>
+                    </group>
+                    <group string="UP NEXT">
+                        <field name="task_temp_upnext" domain="[('stage_id.name','!=','Done')]"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--     actions opening views on models -->
+
+
+    <record model="ir.actions.act_window" id="workflow_evaluation.action_window">
+        <field name="name">Workflow Evaluation</field>
+        <field name="res_model">project.workflow</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Workflow Evaluation" id="workflow_evaluation.menu_root"/>
+
+
+    <menuitem name="Workflow" id="workflow_evaluation.menu_1" parent="workflow_evaluation.menu_root"/>
+
+
+    <menuitem name="Projects" id="workflow_evaluation.menu_1_list" parent="workflow_evaluation.menu_1"
+              action="workflow_evaluation.action_window"/>
+
+
+</odoo>
